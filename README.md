@@ -1,24 +1,14 @@
-# README
+# Ruby on Rails Documentation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Software | Version |
+|----------|---------|
+| Ruby     | 3.3.0   |
+| Rails    | 7.1.2   |
 
-Things you may want to cover:
+## Intent
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Show proper use to reduce the number of Rails issues opened
+- Avoid repeat questions
+- Great way to get started with OSS
+- Contribute in a low risk way
+- Provide a place for Rails developers to find answers to common questions
