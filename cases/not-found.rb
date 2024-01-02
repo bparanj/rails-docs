@@ -33,3 +33,4 @@ class BugTest < Minitest::Test
     end
   end  
 end
+
