@@ -27,6 +27,15 @@ end
 class Article < ActiveRecord::Base
 end
 
+# The `find(*args)` method in Rails is used to retrieve one or more records from the database 
+# based on their primary keys. 
+# 
+# The `*args` represents a splat operator in Ruby. It allows the method to accept a variable 
+# number of arguments. You can pass one or more IDs to `find`, and it will return the 
+# corresponding records. If a single ID is provided, `find` returns a single model instance; 
+# if multiple IDs are passed as an array, it returns an array of model instances. If any of the 
+# records can't be found, it raises an `ActiveRecord::RecordNotFound` exception. 
+
 # Represents an executable documentation for ActiveRecord::Base#find method for the edge cases.
 #
 # @example
