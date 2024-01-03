@@ -6,6 +6,7 @@ ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:'
 ActiveRecord::Schema.define do
   create_table :articles, force: true do |t|
     t.string :title
+		t.integer :rating
     t.datetime :published_at
   end
 end
@@ -53,30 +54,56 @@ class FindBy < Minitest::Test
 	# @param args [Array] Additional arguments allowing for more complex queries, 
 	#   such as SQL conditions with placeholders. Example usage: `find_by("published_at < ?", Time.current)`.
 	# @return [ActiveRecord::Base, nil] The first record that matches the criteria, or `nil` if no record matches.
+
+	def setup
+		Article.create!(title: 'First Article', published_at: Time.now - 5.days, rating: 5)
+	end
+
+	def teardown
+		Article.destroy_all
+	end
+
 	def test_interface
-		Article.create!(title: 'First Article', published_at: Time.now - 5.days)
 		result = Article.find_by("published_at < ?", Time.current)
 
 		assert_equal Article, result.class
 	end
 
+	def test_find_by_single_field
+    article = Article.find_by(title: 'First Article')
+
+    assert_equal 'First Article', article.title
+  end
+
+	def test_find_by_multiple_fields
+		article = Article.find_by(title: 'First Article', rating: 5)
+
+    assert_equal 'First Article', article.title
+  end
+
+	def test_find_by_conditions
+    article = Article.find_by("published_at < ?", Time.now - 4.days)
+    assert_equal 'First Article', article.title
+  end
+
 	# If no record is found for a given condition, it returns nil
 	def test_non_existent_record
-		result = Article.find_by(title: 'bye')
+		result = Article.find_by(title: 'Nonexistent')
 
 		assert_nil result
 	end
 
 	# Returns a record if no matching conditions are given
 	def test_find_by_with_nil
-		Article.create!(title: 'Second Article', published_at: Time.now - 2.days)
+		Article.create!
 		result = Article.find_by(nil)
 		
 		refute_nil result
 	end
 
-	def test_find_by_no_match
-    assert_nil Article.find_by(title: 'Nonexistent')
+	def test_find_by_nil_field
+		result = Article.find_by(title: nil)
+    assert_nil result
   end
 
 	# You must provide at least one argument to `find_by`. This is the first argument called arg.
