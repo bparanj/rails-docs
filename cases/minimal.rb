@@ -28,5 +28,6 @@ end
 
 # Documentation class is used a starting point for documentation
 class Documentation < Minitest::Test
-  def test_document; end
+  def test_document 
+  end
 end

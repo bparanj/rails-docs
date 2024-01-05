@@ -6,7 +6,8 @@ ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:'
 ActiveRecord::Schema.define do
   create_table :articles, force: true do |t|
     t.string :title
-		t.integer :rating
+	t.integer :rating
+
     t.datetime :published_at
   end
 end
@@ -46,6 +47,14 @@ end
 # @example
 #   ruby cases/find_by.rb
 class FindBy < Minitest::Test
+	def setup
+		Article.create!(title: 'First Article', published_at: Time.now - 5.days, rating: 5)
+	end
+
+	def teardown
+		Article.destroy_all
+	end
+  
   # Documents the input and output of the find method.
   #
 	# Finds the first record matching the specified conditions.
@@ -54,14 +63,6 @@ class FindBy < Minitest::Test
 	# @param args [Array] Additional arguments allowing for more complex queries, 
 	#   such as SQL conditions with placeholders. Example usage: `find_by("published_at < ?", Time.current)`.
 	# @return [ActiveRecord::Base, nil] The first record that matches the criteria, or `nil` if no record matches.
-
-	def setup
-		Article.create!(title: 'First Article', published_at: Time.now - 5.days, rating: 5)
-	end
-
-	def teardown
-		Article.destroy_all
-	end
 
 	def test_interface
 		result = Article.find_by("published_at < ?", Time.current)
