@@ -21,6 +21,12 @@ Format code:
 rubocop -a
 ```
 
+Automatically indent:
+
+```
+rubocop -A
+```
+
 ## Minitest Assertion
 
 https://ruby-doc.org/stdlib-3.1.1/libdoc/minitest/rdoc/Minitest/Assertions.html
@@ -29,3 +35,7 @@ https://ruby-doc.org/stdlib-3.1.1/libdoc/minitest/rdoc/Minitest/Assertions.html
 
 Add gem "debug" to the test case and use `debugger` on the line you want the execution to stop for debugging.
 https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+
+## Bug Report Templates
+
+[Templates](https://github.com/rails/rails/tree/main/guides/bug_report_templates)
