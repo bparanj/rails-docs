@@ -78,6 +78,7 @@ class FindSoleBy < Minitest::Test
   # @return ActiveRecord object if the argument is nil.
   # Generated SQL: SELECT "articles".* FROM "articles" ORDER BY "articles"."id" ASC LIMIT ?  [["LIMIT", 2]]
   def test_find_with_nil
+    Article.destroy_all
     result = Article.find_sole_by(nil)
 
     assert_equal 'First Article', result.title
