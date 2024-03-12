@@ -1,0 +1,8 @@
+- hosts: 44.238.195.175
+  become: yes
+  become_user: root
+  tasks:
+    - name: Execute a command on the EC2 instance
+      command: ls -l /
+    - name: Execute a command with sudo access
+      command: apt update

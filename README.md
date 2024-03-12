@@ -5,13 +5,44 @@
 | Ruby     | 3.3.0   |
 | Rails    | 7.1.2   |
 
-## Intent
 
-- Show proper use to reduce the number of Rails issues opened
-- Avoid repeat questions
-- Great way to get started with OSS
-- Contribute in a low risk way
-- Provide a place for Rails developers to find answers to common questions
+## Deployment
+
+1. Create host.ini file.
+2. Run the playbook:
+
+```
+ansible-playbook -i inventory.ini deploy.yml
+```
+
+## Puma Service
+
+Create an entry in /etc/systemd/system/puma.service:
+
+```
+[Unit]
+Description=Rails Puma Webserver
+Wants=network-online.target
+After=network.target network-online.target
+ 
+[Service]
+Type=simple
+User=deploy
+WorkingDirectory=/var/www/rails-docs/
+ExecStart=/bin/bash -lc 'bundle exec puma -C /var/www/rails-docs/config/puma.rb'
+
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+sudo systemctl daemon-reload
+sudo systemctl enable puma
+sudo systemctl start puma
+sudo systemctl status puma
+
 
 ## Code Formatting
 
