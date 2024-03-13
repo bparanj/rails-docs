@@ -1,9 +1,10 @@
-- hosts: clickplan
+- hosts: ec2_instances
   vars:
     local_project_path: "{{ playbook_dir }}"
     remote_deploy_path: /var/www/rails-docs/
     remote_temp_path: /home/ubuntu/rails-docs-temp/
     rails_env: production
+    ansible_ssh_transfer_method: scp
 
   tasks:
     - name: Synchronize project files from local to remote temp directory

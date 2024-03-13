@@ -6,6 +6,16 @@
 | Rails    | 7.1.2   |
 
 
+## Sequence
+
+1. Run deploy.yml 
+2. Ruby puma.yml
+3. Run caddy_ssl.yml
+
+Pending:
+
+Move the playbooks from iac codebase to this codebase.
+
 ## Deployment
 
 1. Create host.ini file.
