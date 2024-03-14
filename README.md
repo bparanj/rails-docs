@@ -9,7 +9,7 @@
 ## Sequence
 
 1. Run deploy.yml 
-2. Ruby puma.yml
+2. Run puma.yml
 3. Run caddy_ssl.yml
 
 Pending:
@@ -23,6 +23,12 @@ Move the playbooks from iac codebase to this codebase.
 
 ```
 ansible-playbook -i inventory.ini deploy.yml
+```
+
+## SSL Playbook
+
+```
+ansible-playbook -i inventory.ini caddy_ssl.yml
 ```
 
 ## Puma Service
