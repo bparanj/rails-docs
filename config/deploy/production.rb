@@ -8,6 +8,10 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 
+# config/deploy/production.rb
+server '54.188.245.219', user: 'deploy', roles: %w{app db web}, port: 2222
+
+set :branch, 'main'
 
 # role-based syntax
 # ==================

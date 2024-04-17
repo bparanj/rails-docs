@@ -1,8 +1,12 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.18.1"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "railsdox"
+set :repo_url, "git@github.com:bparanj/rails-docs.git"
+set :deploy_to, '/var/www/railsdox'
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/master.key')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads')
+set :keep_releases, 5
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
