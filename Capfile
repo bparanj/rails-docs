@@ -7,10 +7,6 @@ require "capistrano/deploy"
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'  # For asset pipeline
 require 'capistrano/rails/migrations'  # For running migrations
-require 'capistrano/puma'    # If using Puma
-
-install_plugin Capistrano::Puma  # Default puma tasks
-install_plugin Capistrano::Puma::Systemd
 
 # Load the SCM plugin appropriate to your project:
 #
