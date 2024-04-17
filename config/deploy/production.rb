@@ -7,9 +7,13 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
-# config/deploy/production.rb
 server '54.188.245.219', user: 'deploy', roles: %w{app db web}, port: 2222
+
+set :ssh_options, {
+  keys: %w(~/.ssh/id_ed25519),
+  forward_agent: true,
+  auth_methods: %w(publickey)
+}
 
 set :branch, 'main'
 
