@@ -52,15 +52,19 @@ group :development, :test do
 end
 
 group :development do
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  # gem "rack-mini-profiler"
+
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "rubocop"
   gem "rubocop-rails"
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  
+  gem 'capistrano', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', '~> 2.1', require: false  # if you are using rbenv
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma', require: false  # if you are using Puma as a web server
 end
 
 group :test do
