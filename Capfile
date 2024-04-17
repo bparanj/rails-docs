@@ -12,8 +12,6 @@ require 'capistrano/puma'    # If using Puma
 install_plugin Capistrano::Puma  # Default puma tasks
 install_plugin Capistrano::Puma::Systemd
 
-install_plugin Capistrano::Puma, load_hooks: false  # Default puma tasks without hooks
-
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
