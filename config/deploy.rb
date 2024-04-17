@@ -8,33 +8,6 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads')
 set :keep_releases, 5
 
-# Remove the --daemon flag and rely on systemd to manage Puma
-namespace :puma do
-  desc 'Start Puma'
-  task :start do
-    on roles(:app) do
-      execute :sudo, 'systemctl start puma.service'
-    end
-  end
-
-  desc 'Stop Puma'
-  task :stop do
-    on roles(:app) do
-      execute :sudo, 'systemctl stop puma.service'
-    end
-  end
-
-  desc 'Restart Puma'
-  task :restart do
-    on roles(:app) do
-      execute :sudo, 'systemctl restart puma.service'
-    end
-  end
-end
-
-# Hook these tasks into the deploy process
-after 'deploy:published', 'puma:restart'
-
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
