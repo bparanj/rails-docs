@@ -62,7 +62,7 @@ group :development do
   
   gem 'capistrano', require: false
   gem 'capistrano-rails', require: false
-  gem 'capistrano-rbenv', '2.1'
+  gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano3-puma'
   gem 'capistrano-bundler', require: false
   gem 'ed25519', '>= 1.2', '< 2.0'
