@@ -64,7 +64,7 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', '~> 2.1', require: false  # if you are using rbenv
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma', require: false  # if you are using Puma as a web server
+  gem 'capistrano3-puma'
   gem 'ed25519', '>= 1.2', '< 2.0'
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 end
