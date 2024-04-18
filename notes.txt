@@ -98,32 +98,25 @@ pwd
 mkdir -p /var/www/railsdox/shared/config
 cd /var/www/railsdox/shared/config
 vi database.yml
-ll
+
 chmod 600 /var/www/railsdox/shared/config/database.yml
-ll
 chmod 600 /var/www/railsdox/shared/config/master.key
 touch /var/www/railsdox/shared/config/master.key
 chmod 600 /var/www/railsdox/shared/config/master.key
 vi master.key
-ll
+
 cat master.key
-cd ..
 RAILS_ENV=production bin/rails db:create
-rails -v
 bin/rails -v
 ruby -v
 bundle
-ll
 cd releases
-ll
 cd 20240417184243/
-ll
 cat Gemfile
 rails -v
 bin/rails -v
 RAILS_ENV=production bin/rails db:create
 RAILS_ENV=production bin/rails db:migrate
-cd ..
 cat /var/www/railsdox/shared/puma.rb
 ll /var/www/railsdox/shared/puma.rb
 cat /etc/systemd/system/puma.service
@@ -142,21 +135,14 @@ journalctl -xeu puma.service
 sudo journalctl -xe
 free -m
 df -h
-ll
 cd shared
-ll
 vi puma.rb
-cd ..
 sudo systemctl start puma.service
 cat /var/www/railsdox/shared/log/puma_error.log
 cd shared
-ll
 cd log
-ll
 printenv | grep RAILS
-cd ..
 bundle exec puma -C /var/www/railsdox/shared/puma.rb --debug
-ll
 cd current
 bundle exec puma -C /var/www/railsdox/shared/puma.rb --debug
 bundle exec puma -C /var/www/railsdox/shared/puma.rb
