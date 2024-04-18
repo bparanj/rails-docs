@@ -73,3 +73,346 @@
   RAILS_ENV=production rails db:migrate
   rails c -e production
   RAILS_ENV=production rails s
+
+
+ssh -p 2222 -i "RailsDevBox.pem" ubuntu@35.93.227.4
+
+ubuntu@ip-172-31-37-34:~/work/rails-docs$ export GEM_HOME="$HOME/.gem"
+ubuntu@ip-172-31-37-34:~/work/rails-docs$ export GEM_PATH="$HOME/.gem"
+ubuntu@ip-172-31-37-34:~/work/rails-docs$ export PATH="$HOME/.gem/bin:$PATH"
+ubuntu@ip-172-31-37-34:~/work/rails-docs$ rails -v
+Rails 7.1.3.2
+ubuntu@ip-172-31-37-34:~/work/rails-docs$ RAILS_ENV=production bin/rails assets:precompile
+
+production server:
+
+ls -la ~/.ssh
+mkdir ~/.ssh
+chmod 700 ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+vi ~/.ssh/authorized_keys
+ll ~/.ssh
+chown -R deploy:deploy /home/deploy/.ssh
+ll ~/.ssh
+sudo systemctl restart sshd
+vi ~/.ssh/authorized_keys
+cat ~/.ssh/authorized_keys
+sudo systemctl restart sshd
+vi ~/.ssh/authorized_keys
+sudo systemctl restart sshd
+ls -ld /var/www
+sudo mkdir -p /var/www/railsdox
+sudo chown deploy:deploy /var/www/railsdox
+sudo chmod 755 /var/www/railsdox
+sudo chown -R deploy:deploy /var/www/railsdox
+pwd
+mkdir -p /var/www/railsdox/shared/config
+cd /var/www/railsdox/shared/config
+vi database.yml
+ll
+chmod 600 /var/www/railsdox/shared/config/database.yml
+ll
+chmod 600 /var/www/railsdox/shared/config/master.key
+touch /var/www/railsdox/shared/config/master.key
+chmod 600 /var/www/railsdox/shared/config/master.key
+vi master.key
+ll
+cat master.key
+cd ..
+RAILS_ENV=production bin/rails db:create
+rails -v
+bin/rails -v
+ruby -v
+bundle
+ll
+cd releases
+ll
+cd 20240417184243/
+ll
+cat Gemfile
+rails -v
+bin/rails -v
+RAILS_ENV=production bin/rails db:create
+RAILS_ENV=production bin/rails db:migrate
+cd ..
+cat /var/www/railsdox/shared/puma.rb
+ll /var/www/railsdox/shared/puma.rb
+cat /etc/systemd/system/puma.service
+vi /etc/systemd/system/puma.service
+sudo vi /etc/systemd/system/puma.service
+sudo systemctl enable puma.service
+sudo systemctl start puma.service
+sudo systemctl status puma.service
+cat /etc/systemd/system/puma.service
+sudo systemctl status puma.service
+sudo systemctl start puma.service
+sudo systemctl status puma.service
+sudo systemctl restart puma.service
+systemctl status puma.service
+journalctl -xeu puma.service
+sudo journalctl -xe
+free -m
+df -h
+ll
+cd shared
+ll
+vi puma.rb
+cd ..
+sudo systemctl start puma.service
+cat /var/www/railsdox/shared/log/puma_error.log
+cd shared
+ll
+cd log
+ll
+printenv | grep RAILS
+cd ..
+bundle exec puma -C /var/www/railsdox/shared/puma.rb --debug
+ll
+cd current
+bundle exec puma -C /var/www/railsdox/shared/puma.rb --debug
+bundle exec puma -C /var/www/railsdox/shared/puma.rb
+sudo systemctl start puma.service
+systemctl status puma.service
+journalctl -xeu puma.service
+sudo systemctl start puma.service
+curl localhost
+curl localhost:3000
+cat /etc/caddy/CaddyFile
+cat /etc/caddy/Caddyfile
+sudo systemctl status caddy
+curl -I localhost
+bundle exec puma -p 3000
+cat /etc/caddy/Caddyfile
+rails routes
+bin/rails routes
+bundle exec puma -p 3000
+RAILS_ENV=production bundle exec puma -p 3000
+
+control node:
+
+ curl localhost:3000/up
+  curl localhost:3000/tasks
+  pwd
+  cd work
+  cd rails-docs/
+  ll log/
+  cat app/views/layouts/application.html.erb 
+  RAILS_ENV=production rails assets:precompile
+  RAILS_ENV=production bin/rails assets:precompile
+  export GEM_HOME="$HOME/.gem"
+  export GEM_PATH="$HOME/.gem"
+  export PATH="$HOME/.gem/bin:$PATH"
+  rails -v
+  RAILS_ENV=production bin/rails assets:precompile
+  curl localhost:3000/tasks
+  curl localhost:3000/tasks/1
+  git status
+  git add .
+  git status
+  git commit -m 'Get the app to work in production environment'
+  git push
+  history
+  cat ~/.ssh/authorized_keys
+  ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
+  sudo systemctl restart sshd
+  ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
+  cat ~/.ssh/authorized_keys
+  ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
+  sudo systemctl restart sshd
+  ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
+  ll ~/.ssh/config
+  ll ~/.ssh/
+  cat ~/.ssh/id_ed25519.pub 
+  ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
+  ansible
+  sudo apt-add-repository ppa:ansible/ansible
+  sudo apt update
+  sudo apt install ansible
+  ll *.pem
+  ls 
+  ll
+  vi rails-server.pem
+  ll *.pem
+  chmod 400 rails-server.pem
+  ll
+  ll *.pem
+  pwd
+  git status
+  git pull
+  git diff 
+  ansible --version
+  ansible-playbook -i inventory_file caddy_ssl.yml
+  cat inventory_file
+  cat inventory.ini
+  ansible-playbook -i inventory.ini caddy_ssl.yml
+  cat inventory.ini
+  echo $SSH_CONFIG
+  vi ~/.ssh/config
+  cat ansible.cfg
+  vi ansible.cfg
+  ansible-playbook -i inventory.ini caddy_ssl.yml
+  curl http://clickplan.net/up
+  ansible-playbook -i inventory.ini deploy.yml --extra-vars "rails_master_key=501f054eecfdeab14e455aecd0b73e9e"
+  curl http://clickplan.net/up
+  curl https://clickplan.net:8080/healthz
+  ansible-playbook -i inventory.ini caddy_ssl.yml
+  cat caddy_ssl.yml
+  curl -I http://clickplan.net
+  curl -I https://clickplan.net
+  curl -I https://clickplan.net/up
+  ansible-playbook -i inventory.ini caddy_ssl.yml
+  curl -I https://clickplan.net/up
+  curl -I https://clickplan.net/tasks
+  curl -I https://clickplan.net/up
+  curl https://clickplan.net/up
+  git status
+  git diff
+  git add Gemfile.lock ansible.cfg 
+  git status
+  git commit -m 'Fix ansible config'
+  git push
+  git status
+
+
+ubuntu@ip-172-31-37-34:~/work/rails-docs$ history
+    1  ruby -v
+    2  git --version
+    3  ls -al ~/.ssh
+    4  ls -al ~/.ssh/authorized_keys 
+    5  cat  ~/.ssh/authorized_keys 
+    6  ssh-keygen -t ed25519 -C "bparanj@gmail.com"
+    7  ls -al ~/.ssh
+    8  eval "$(ssh-agent -s)"
+    9  cat ~/.ssh/config
+   10  ssh-add ~/.ssh/id_ed25519
+   11  cat ~/.ssh/id_rsa.pub
+   12  cat ~/.ssh/id_ed25519.pub
+   13  pwd
+   14  mkdir work
+   15  cd work
+   16  git clone git@github.com:bparanj/rails-docs.git
+   17  cd rails-docs/
+   18  ll
+   19  bundle check
+   20  bundle
+   21  rm Gemfile.lock
+   22  which ruby
+   23  echo $GEM_HOME
+   24  echo $GEM_PATH
+   25  which chruby
+   26  export GEM_HOME="$HOME/.gem"
+   27  export GEM_PATH="$HOME/.gem"
+   28  export PATH="$HOME/.gem/bin:$PATH"
+   29  echo $GEM_PATH
+   30  echo $GEM_HOME
+   31  gem list bundler
+   32  bundle
+   33  ll
+   34  vim .
+   35  rails c -e production
+   36  pwd
+   37  cd config
+   38  vi master.key
+   39  pwd
+   40  cd ..
+   41  rails c -e production
+   42  sudo vi /etc/postgresql/16/main/pg_hba.conf 
+   43  sudo systemctl restart postgresql
+   44  rails c -e production
+   45  bin/rails db:create
+   46  RAILS_ENV=production bin/rails db:create 
+   47  rails c -e production
+   48  rails generate scaffold Task name:string
+   49  rails c -e production
+   50  rails db:migrate
+   51  RAILS_ENV=production rails db:migrate
+   52  rails c -e production
+   53  RAILS_ENV=production rails s
+   54  history
+   55  git status
+   56  git pull
+   57  pwd
+   58  cap install
+   59  bundle
+   60  cap install
+   61  git status
+   62  git add .
+   63  git status
+   64  git commit -m 'Initialize Capistrano'
+   65  git push
+   66  git pull
+   67  cap production deploy
+   68  cat log/capistrano.log
+   69  git pull
+   70  bundle
+   71  cap production deploy
+   72  git pull
+   73  cat ~/.ssh/id_rsa
+   74  ll ~/.ssh
+   75  ssh-add ~/.ssh/id_ed25519
+   76  cat ~/.ssh/id_ed25519.pub
+   77  git status
+   78  git add .
+   79  git status
+   80  git commit -m 'Install Capistrano related gems'
+   81  git push
+   82  git pull
+   83  cap production deploy
+   84  ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
+   85  cap production deploy
+   86  cat config/database.yml
+   87  cap production deploy
+   88  git status
+   89  git pull
+   90  git status
+   91  git pull
+   92  cap production deploy
+   93  grep -R "--daemon" /path/to/your/capistrano/configs
+   94  git pull
+   95  cap production deploy
+   96  grep -R "\--daemon" /path/to/your/capistrano/configs
+   97  git pull
+   98  cap production deploy
+   99  bundle
+  100  cap production deploy
+  101  git status
+  102  git pull
+  103  cap production deploy
+  104  gem list capistrano*
+  105  git pull
+  106  bundle
+  107  rm Gemfile.lock
+  108  bundle
+  109  git pull
+  110  bundle
+  111  cap production deploy
+  112  git checkout Gemfile.lock
+  113  bundle
+  114  cap production deploy
+  115  bundle config set frozen false
+  116  rm Gemfile.lock
+  117  bundle
+  118  cap production deploy
+  119  git checkout Gemfile.lock
+  120  bundle
+  121  cap production deploy
+  122  bundle config set frozen false
+  123  bundle
+  124  cap production deploy
+  125  git pull
+  126  bundle
+  127  cap production deploy
+  128  bundle config set --local frozen false
+  129  bundle
+  130  cap production deploy
+  131  git pull
+  132  cap production deploy
+  133  bundle
+  134  cap production deploy
+  135  git pull
+  136  bundle
+  137  cap production deploy
+  138  curl http://54.188.245.219/up
+  
+

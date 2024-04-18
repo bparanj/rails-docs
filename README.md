@@ -1,3 +1,7 @@
+Production server:
+
+ssh -i rails-server.pem -p 2222 ubuntu@54.188.245.219 
+
 # Ruby on Rails Documentation
 
 | Software | Version |
