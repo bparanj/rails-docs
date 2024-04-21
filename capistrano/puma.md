@@ -11,8 +11,8 @@ After=network.target
 [Service]
 Type=simple
 User=deploy
-WorkingDirectory=/var/www/{{ app_name }}/current
-ExecStart=/bin/bash -lc 'bundle exec puma -C /var/www/{{ app_name }}/shared/puma.rb'
+WorkingDirectory=/home/deploy/apps/{{ app_name }}/current
+ExecStart=/bin/bash -lc 'bundle exec puma -C /home/deploy/apps/{{ app_name}}/current/config/puma.rb'
 Restart=always
 
 [Install]
@@ -20,7 +20,7 @@ WantedBy=multi-user.target
 ```
 
 ### Step 2: Write the Ansible Playbook
-Create a playbook (`setup_puma_service.yml`) that uses this template to configure the systemd service file:
+Create a playbook (`puma.yml`) that uses this template to configure the systemd service file:
 
 ```yaml
 ---
@@ -34,7 +34,7 @@ Create a playbook (`setup_puma_service.yml`) that uses this template to configur
   tasks:
     - name: Copy the Puma systemd service file from template
       ansible.builtin.template:
-        src: puma.service.j2
+        src: ../templates/puma.service.j2
         dest: /etc/systemd/system/puma.service
       notify:
         - reload systemd
@@ -52,19 +52,42 @@ Create a playbook (`setup_puma_service.yml`) that uses this template to configur
         enabled: yes
 ```
 
-### Step 3: Run the Playbook with the Application Name
-When you want to run the playbook, you provide the application name using the `--extra-vars` or `-e` option:
+### Step 3 : Create the Inventory File
 
-```bash
-ansible-playbook -i inventory.ini setup_puma_service.yml -e "app_name=railsdox"
+Create the inventory.ini file inside the ansible directory in hivegrid.dev project:
+
+```sh
+[ec2_instances]
+54.188.245.219
+
+[ec2_instances:vars]
+ansible_port=2222
+ansible_user=ubuntu
+ansible_ssh_private_key_file=/Users/bparanj/work/hivegrid.dev/javascript/rails-server.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 ```
 
-This command sets the `app_name` variable to "railsdox", which is then used in the playbook to configure the paths in the systemd service file correctly.
+### Step 4: Run the Playbook with the Application Name
+
+Provide the application name using the `--extra-vars` or `-e` option, when running the playbook:
+
+```sh
+ansible-playbook -i inventory.ini playbooks/puma.yml -e "app_name=capt"
+```
+
+This command sets the `app_name` variable to "capt", which is used in the playbook to configure the paths in the systemd service file correctly.
 
 ### Explanation
-This playbook:
+
 - **Templates** the systemd service configuration for Puma using a variable for the application name, making it reusable for different applications.
 - **Reloads** systemd to recognize changes to the service definitions.
 - **Restarts** the Puma service to apply the new configuration.
 
-This approach ensures flexibility and reusability, allowing you to easily deploy and manage the Puma service for different Ruby on Rails applications without modifying the playbook for each one.
+This approach ensures flexibility and reusability, allowing you to deploy and manage the Puma service for different Rails applications without modifying the playbook.
+
+Next step: Setup SSL. 
+
+- Map IP to domain
+- Run SSL playbook
+- Restart Puma after deploy
+

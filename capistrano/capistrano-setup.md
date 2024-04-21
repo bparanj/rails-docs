@@ -48,9 +48,9 @@ Configure `config/deploy.rb` to specify global settings:
 
 ```ruby
 # config/deploy.rb
-set :application, 'my_app_name'
+set :application, 'capt'
 set :repo_url, 'git@example.com:me/my_repo.git'
-set :deploy_to, '/var/www/my_app_name'
+set :deploy_to, '/var/www/apps/capt'
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/master.key')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads')
 set :keep_releases, 5

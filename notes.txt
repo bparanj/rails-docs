@@ -1,3 +1,4 @@
+
   curl localhost:3000/up
   curl localhost:3000/tasks
 
@@ -7,6 +8,7 @@
   export GEM_HOME="$HOME/.gem"
   export GEM_PATH="$HOME/.gem"
   export PATH="$HOME/.gem/bin:$PATH"
+  
   rails -v
   RAILS_ENV=production bin/rails assets:precompile
 
@@ -31,11 +33,11 @@
   cd rails-docs/
 
   bundle
-  rm Gemfile.lock
+
   which ruby
   echo $GEM_HOME
   echo $GEM_PATH
-  which chruby
+
   export GEM_HOME="$HOME/.gem"
   export GEM_PATH="$HOME/.gem"
   export PATH="$HOME/.gem/bin:$PATH"
