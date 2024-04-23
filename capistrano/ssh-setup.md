@@ -3,6 +3,7 @@ The message "Could not open a connection to your authentication agent." typicall
 Here's how to resolve this issue:
 
 ### 1. Start the SSH Agent
+
 You need to start the SSH agent in the background. You can do this by running:
 
 ```bash
@@ -11,6 +12,7 @@ eval "$(ssh-agent -s)"
 This command starts the SSH agent and sets the necessary environment variables. The `-s` flag outputs shell commands to set up the environment variables which are then evaluated to affect the current shell.
 
 ### 2. Add Your SSH Key
+
 Once the agent is running, you can add your SSH private key to the SSH agent by using the `ssh-add` command. If your private key is located at the default path (`~/.ssh/id_rsa` or similar), you can simply run:
 
 ```bash
@@ -24,6 +26,7 @@ ssh-add /path/to/your/private/key
 ```
 
 ### 3. Verify Key is Added
+
 To check if your key is now managed by the SSH agent, use:
 
 ```bash
@@ -32,6 +35,7 @@ ssh-add -l
 This command lists all the keys that the agent is currently handling.
 
 ### 4. Using SSH Agent Forwarding (Optional)
+
 If you're using SSH agent forwarding (useful when you're connecting through one server to reach another), ensure that it is enabled in your SSH configuration file (`~/.ssh/config`):
 
 ```plaintext
@@ -40,6 +44,7 @@ Host *
 ```
 
 ### 5. Troubleshooting
+
 - If `ssh-add` indicates that it can't connect to your SSH agent, the environment variables might not be set correctly. Re-run `eval "$(ssh-agent -s)"`.
 - Make sure that permissions on your SSH key files and the `~/.ssh` directory are correctly set. They should not be accessible by others:
   ```bash
@@ -48,6 +53,7 @@ Host *
   ```
 
 ### 6. Persistent Agent across Sessions
+
 If you find it tedious to start the SSH agent and add your keys each time you open a new terminal session, you can add the following lines to your shell profile file (`~/.bashrc`, `~/.bash_profile`, or `~/.zshrc` depending on your shell):
 
 ```bash

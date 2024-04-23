@@ -64,10 +64,12 @@ Here's how you can modify your playbook to fix the authentication issue:
 ```
 
 ### Key Adjustments
+
 - **Adjusted `Add deploy user md5 auth to pg_hba.conf before general directive` task**: This task now ensures that the specific directive for the `deploy` user is added before the general `peer` directive using the `insertbefore` parameter.
 - **Idempotence and Order**: The `lineinfile` tasks are idempotent and will only modify the file if the exact line does not exist already. The order of lines as managed by Ansible ensures the correct application of rules.
 
 ### Final Recommendation
+
 Run this playbook to apply the changes. After running, verify that the `pg_hba.conf` file has the correct order of lines, and then test connectivity as the `deploy` user to ensure that `md5` authentication is working as expected.
 
 See the corrected playbook in hivegrid.dev codebase.

@@ -1,6 +1,7 @@
 To create an Ansible playbook that configures a Puma service and allows you to set the application name dynamically from the command line, you can use Ansible's templating features along with the `extra-vars` option for passing variables during runtime.
 
 ### Step 1: Create the Template for the Systemd Service File
+
 First, create a Jinja2 template file for your systemd service (`puma.service.j2`) that uses a variable for the application path:
 
 ```jinja2
@@ -20,6 +21,7 @@ WantedBy=multi-user.target
 ```
 
 ### Step 2: Write the Ansible Playbook
+
 Create a playbook (`puma.yml`) that uses this template to configure the systemd service file:
 
 ```yaml
