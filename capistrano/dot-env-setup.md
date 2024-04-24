@@ -38,12 +38,17 @@ You'll need to make sure Capistrano copies this `.env.production` file to the se
 append :linked_files, '.env.production'
 
 namespace :deploy do
-  after :updating, :link_dotenv do
+  desc 'Upload .env.production unless it exists'
+  task :upload_dotenv do
     on roles(:app) do
-      execute :ln, "-s", "#{shared_path}/.env.production", "#{release_path}/.env.production"
+      unless test("[ -f #{shared_path}/.env.production ]")
+        upload!('.env.production', "#{shared_path}/.env.production")
+      end
     end
   end
 end
+
+before 'deploy:check:linked_files', 'deploy:upload_dotenv'
 ```
 
 ### Step 4: Loading Environment Variables
