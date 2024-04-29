@@ -13,11 +13,10 @@
   RAILS_ENV=production bin/rails assets:precompile
 
   curl localhost:3000/tasks
-  curl localhost:3000/tasks/1
 
   ruby -v
   git --version
-  ls -al ~/.ssh
+
   ls -al ~/.ssh/authorized_keys 
   cat  ~/.ssh/authorized_keys 
   ssh-keygen -t ed25519 -C "bparanj@gmail.com"
@@ -38,9 +37,6 @@
   echo $GEM_HOME
   echo $GEM_PATH
 
-  export GEM_HOME="$HOME/.gem"
-  export GEM_PATH="$HOME/.gem"
-  export PATH="$HOME/.gem/bin:$PATH"
   echo $GEM_PATH
   echo $GEM_HOME
   gem list bundler
@@ -56,20 +52,17 @@
   rails c -e production
   bin/rails db:create
   RAILS_ENV=production bin/rails db:create 
-  rails c -e production
+
   rails generate scaffold Task name:string
-  rails c -e production
+
   rails db:migrate
   RAILS_ENV=production rails db:migrate
-  rails c -e production
+
   RAILS_ENV=production rails s
 
 
 ssh -p 2222 -i "RailsDevBox.pem" ubuntu@35.93.227.4
 
-$ export GEM_HOME="$HOME/.gem"
-$ export GEM_PATH="$HOME/.gem"
-$ export PATH="$HOME/.gem/bin:$PATH"
 $ rails -v
 Rails 7.1.3.2
 $ RAILS_ENV=production bin/rails assets:precompile
@@ -82,14 +75,14 @@ chmod 700 ~/.ssh
 touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 vi ~/.ssh/authorized_keys
-ll ~/.ssh
+
 chown -R deploy:deploy /home/deploy/.ssh
 ll ~/.ssh
 sudo systemctl restart sshd
 vi ~/.ssh/authorized_keys
 cat ~/.ssh/authorized_keys
 sudo systemctl restart sshd
-vi ~/.ssh/authorized_keys
+
 sudo systemctl restart sshd
 ls -ld /var/www
 sudo mkdir -p /var/www/railsdox
@@ -176,13 +169,10 @@ control node:
   cat app/views/layouts/application.html.erb 
 
   RAILS_ENV=production bin/rails assets:precompile
-  export GEM_HOME="$HOME/.gem"
-  export GEM_PATH="$HOME/.gem"
-  export PATH="$HOME/.gem/bin:$PATH"
+
   rails -v
   RAILS_ENV=production bin/rails assets:precompile
-  curl localhost:3000/tasks
-  curl localhost:3000/tasks/1
+
  
   cat ~/.ssh/authorized_keys
   ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
@@ -228,8 +218,6 @@ control node:
   ansible-playbook -i inventory.ini caddy_ssl.yml
   curl -I https://clickplan.net/up
   curl -I https://clickplan.net/tasks
-  curl -I https://clickplan.net/up
-  curl https://clickplan.net/up
 
   git add Gemfile.lock ansible.cfg 
   git commit -m 'Fix ansible config'
@@ -301,7 +289,6 @@ Control Node
 
 
 git commit -m 'Initialize Capistrano'
-cap production deploy
 git pull
 bundle
 cap production deploy
@@ -318,10 +305,9 @@ git push
 git pull
 cap production deploy
 ssh -i ~/.ssh/id_ed25519 -p 2222 deploy@54.188.245.219
-cap production deploy
 cat config/database.yml
 cap production deploy
-cap production deploy
+
 grep -R "\--daemon" /path/to/your/capistrano/configs
 
 bundle config set frozen false

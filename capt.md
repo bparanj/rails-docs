@@ -1,18 +1,25 @@
+```sh
 rails new capt --css tailwind --database=postgresql
+```
 
+```sh
 export CAPT_DATABASE_PASSWORD='password'
 echo $CAPT_DATABASE_PASSWORD
+```
 
 config/database.yml
 
+```ruby
 production:
   <<: *default
   database: capt_production
   username: deploy 
   password: <%= ENV["CAPT_DATABASE_PASSWORD"] %>
+```
 
 Add:
 
+```ruby
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
@@ -23,10 +30,15 @@ group :development do
   gem 'ed25519', '>= 1.2', '< 2.0'
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 end
+```
 
+```sh
 bundle
+```
 
+```sh
 cap install
+```
 
 Capfile:
 
@@ -69,6 +81,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :keep_releases, 5
 ```
 
+```sh
 ubuntu@ip-172-31-37-34:~/work/capt$ ssh-add -l
 Could not open a connection to your authentication agent.
 ubuntu@ip-172-31-37-34:~/work/capt$ eval "$(ssh-agent -s)"
@@ -77,15 +90,17 @@ ubuntu@ip-172-31-37-34:~/work/capt$ ssh-add
 Identity added: /home/ubuntu/.ssh/id_ed25519 (email)
 ubuntu@ip-172-31-37-34:~/work/capt$ ssh-add -l
 256 SHA256:blah-b-b email (ED25519)
+```
 
 see capistrano/ssh-setup.md
 
+```sh
 ssh-copy-id -i ~/.ssh/id_ed25519.pub deploy@54.188.245.219 -p 2222
-
+```
 
 Packages needed to install Ruby using rvm:
 
- bzip2, g++, gcc, autoconf, automake, bison, libc6-dev, libffi-dev, libgdbm-dev, libncurses5-dev, libsqlite3-dev, libtool, libyaml-dev, make, pkg-config, sqlite3, zlib1g-dev, libgmp-dev, libreadline-dev, libssl-dev.
+bzip2, g++, gcc, autoconf, automake, bison, libc6-dev, libffi-dev, libgdbm-dev, libncurses5-dev, libsqlite3-dev, libtool, libyaml-dev, make, pkg-config, sqlite3, zlib1g-dev, libgmp-dev, libreadline-dev, libssl-dev.
 
 Sequence
 

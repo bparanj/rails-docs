@@ -1,6 +1,8 @@
 Production server:
 
+```sh
 ssh -i rails-server.pem -p 2222 ubuntu@54.188.245.219 
+```
 
 # Ruby on Rails Documentation
 
@@ -8,7 +10,6 @@ ssh -i rails-server.pem -p 2222 ubuntu@54.188.245.219
 | -------- | ------- |
 | Ruby     | 3.3.0   |
 | Rails    | 7.1.2   |
-
 
 ## Sequence
 
@@ -25,13 +26,13 @@ Move the playbooks from iac codebase to this codebase.
 1. Create host.ini file.
 2. Run the playbook:
 
-```
+```sh
 ansible-playbook -i inventory.ini deploy.yml
 ```
 
 ## SSL Playbook
 
-```
+```sh
 ansible-playbook -i inventory.ini caddy_ssl.yml
 ```
 
@@ -58,35 +59,28 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
+```sh
 sudo systemctl daemon-reload
 sudo systemctl enable puma
 sudo systemctl start puma
 sudo systemctl status puma
-
+```
 
 ## Code Formatting
 
 Format code:
 
-```
+```sh
 rubocop -a
 ```
 
 Automatically indent:
 
-```
+```sh
 rubocop -A
 ```
-
-## Minitest Assertion
-
-https://ruby-doc.org/stdlib-3.1.1/libdoc/minitest/rdoc/Minitest/Assertions.html
 
 ## Debugger
 
 Add gem "debug" to the test case and use `debugger` on the line you want the execution to stop for debugging.
 https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-
-## Bug Report Templates
-
-[Templates](https://github.com/rails/rails/tree/main/guides/bug_report_templates)
