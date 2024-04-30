@@ -5,7 +5,7 @@ To tail a log file using Capistrano in a production environment, you can use the
 2. Define a new Capistrano task to tail the log file. For example:
 
 ```ruby
-namespace :logs do
+namespace :log do
   desc "Tail the production log file"
   task :tail do
     on roles(:app) do
@@ -24,7 +24,7 @@ Inside the `on` block, we use the `execute` method to run the `tail` command on 
 4. To tail the log file, run the following command from your local machine:
 
 ```
-bundle exec cap production logs:tail
+bundle exec cap production log:tail
 ```
 
 This command will connect to the production server(s) and start tailing the `production.log` file in real-time. You will see the log output in your terminal as new entries are appended to the file.
